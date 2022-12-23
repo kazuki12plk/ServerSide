@@ -59,14 +59,6 @@ class PostsController extends Controller
         $post = $request->input([
             'user_name', 'contents'
         ]);
-        // $_post = str_replace(array(" ", "　"), "", $post);
-        // //全角スペースと半角スペースを削除
-        // $_post = str_replace('　', ' ', $_post);
-        // //全角スペースを半角に変換
-        // $_post = preg_replace('/\s(?=\s)/', '', $_post);
-        // //連続する半角スペースは削除
-        // $_post = trim($_post);
-        // //文字列の先頭と末尾にあるホワイトスペースを削除
 
         $post = $request->validate([
             'user_name' => 'required|space',
@@ -82,30 +74,6 @@ class PostsController extends Controller
 
         return redirect('/index');
 
-        // $post = str_replace('　', ' ', $post);
-        //全角スペースを半角に変換
-        // $post = preg_replace('/\s(?=\s)/', '', $post);
-        //連続する半角スペースは削除
-        // $post = trim($post);
-        //文字列の先頭と末尾にあるホワイトスペースを削除
-        // $post = str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $post);
-        //円マーク、パーセント、アンダーバーはエスケープ処理
-        // $keywords = array_unique(explode(' ', $post));
-        //キーワードを半角スペースで配列に変換し、重複する値を削除
-
-
-        // ----------------------------------------
-
-        // $post = $request->validate([
-        //     'user_name' => 'required',
-        //     'contents' => 'required|max:100|',
-        // ]);
-
-        // DB::table('posts')->insert([
-        //     'post' => $post
-        // ]); //DB登録
-
-        // return redirect('/index');
     }
 
     public function updateForm($id)
@@ -145,20 +113,4 @@ class PostsController extends Controller
         return redirect('/index');
     }
 
-    // public function index(Request $request)
-    // {
-    //     $search = $request->input('search') ?? '';
-
-    //     $key = '%' . preg_replace('/([\\[_%])/', '[$1]', $search) . '%';
-
-    //     $rows = Item::where('name', 'LIKE', $key)->get();
-
-    //     // DB::table('posts')
-    //     //     ->where('contents', $contents)
-    //     //     ->select(
-    //     //         '%' . 'search' . '%'
-    //     //     );
-
-    //     return response()->json($rows);
-    // }
 }
