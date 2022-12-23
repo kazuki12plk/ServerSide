@@ -28,9 +28,7 @@ class PostsController extends Controller
                 ->where('user_name', 'like', "%{$search}%")
                 ->orwhere('contents', 'like', "%{$search}%")
                 ->get();
-            // $list2 = DB::table('posts')
-            //     ->where('user_name', $search)
-            //     ->get();
+
             if (count($list) != 0) {
                 // 検索結果を表示
                 return view('posts.index', ['list' => $list]);
