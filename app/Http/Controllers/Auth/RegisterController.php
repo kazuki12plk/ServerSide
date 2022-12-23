@@ -38,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest'); //->except('logout');
     }
 
     /**
@@ -50,9 +50,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:255', 'space'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'space'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'space'],
+        ], [
+            'name.space' => ':attributeは空白以外の文字もご記入下さい。',
+            'email.space' =>
+            ':attributeは空白以外の文字もご記入下さい。',
+            'password.space' =>
+            ':attributeは空白以外の文字もご記入下さい。',
         ]);
     }
 
